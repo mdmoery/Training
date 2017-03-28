@@ -1,0 +1,19 @@
+{
+  "name": "2017-ok-coders-day-1",
+  "version": "1.0.0",
+  "description": "First day exercise",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdmoery/2017-OK-Coders-Day-1.git"
+  },
+  "author": "Micheal Moery",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mdmoery/2017-OK-Coders-Day-1/issues"
+  },
+  "homepage": "https://github.com/mdmoery/2017-OK-Coders-Day-1#readme"
+}
