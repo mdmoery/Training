@@ -1,26 +1,26 @@
-var name = "Princess Brunhilda von Nay Nay III";
-var age = 8; //Setting age to 8
+var name = "Princess Brunhida con Nay Nay III";
+var age = 8;// Setting age to 8
 var tmpAge;
 var drinkingAge;
 
 console.log("My name is " + name + " and I am age " + age);
 
+var counter = 1;
 
-var counter =1;
+for (var counter = 1; age <= (21 - counter); counter++) {
 
-while(age <= (21 - counter)){
-    tmpAge = age + counter;
-    console.log("In " +counter + " years I will be " + tmpAge);
-    counter++;
-    
-    drinkingAge = 21 - tmpAge;
+//while (age < (21 - counter)) {
+	tmpAge = age + counter;
+	//console.log("In " + counter + " I will be " + age + counter);
+	console.log("In " + counter + " I will be " + tmpAge);
+	
+	drinkingAge = 21 - tmpAge;
 
-
-    if (tmpAge < 21) {
-        console.log("...and I can have beer in " + drinkingAge + " years");
-    } else if (tmpAge === 21) {
-        console.log ("yeah ... celebrate");
-    } else {
-        console.log("leave me alone I am drinking");
-    }
-};
+	if (tmpAge < 21) {
+		console.log("... and beer in " + drinkingAge + " years");
+	} else if (age === 21) {
+		console.log("yeah ... celebrate");
+	} else {
+		console.log("leave me alone I am drinking");
+	}
+}

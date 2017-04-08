@@ -1,0 +1,9 @@
+ 
+homework
+create local node app that lets us populate a to-do list, lets us see what is in the list and ability to mark off.   This can run on the command line.
+
+* array
+* present to user
+* what do you want to do next
+* does not have to keep the data
+* can use library we have already created
