@@ -1,14 +1,19 @@
- 
 var mongo = require('mongodb');
-var mc = mongo.Mongo.Client;
+var MongoClient = mongo.MongoClient;
 
-var url = 'mongodb://localhost:27017/testing';
+// Connection URL
+// localhost = ip
+// 27017 is the port
+// enron is the database
+// make sure your mongod is running
+var url = 'mongodb://localhost:27017/enron';
 
-mc.connect(url,function(err,db) {
-    if(err){ console.log("unable to access database on " + url);}
-    var collection = db.collection('posts');
-    posts.find({}).toArray(function(err,docs){
-        console.log(docs);
-        db.close();
-    });
+MongoClient.connect(url, function(err, db) {
+  if (err) { console.log("error!"); }
+
+  var collection = db.collection('emails')
+  collection.find({}).toArray(function(err, docs) {
+    console.log(docs[0]);
+    db.close();
+  });
 });

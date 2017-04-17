@@ -1,36 +1,33 @@
-// Week 4 work
-
 var restify = require('restify');
 var server = restify.createServer();
-
 var port = 8088;
 
-// /blogs/posts/comments/
-//
-// CRUD   | mongoDB | restify
-// --------------------------
-// create | insert  | post
-// read   | fing    | GET
-// update | update  | PUT
-// delete | remove  | DELETE
+var hello = require('./routes/hello.js');
+var emails = require('./routes/emails.js');
+var client = require('./client');
 
-// server.verb('path' function(req, res, next({}))
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/enron');
+var db = mongoose.connection;
 
-function send(req, res, next){
-    res.send("Testing " + req.params.test);
-    return next;
-};
+db.on('error', function(msg){
+	console.log('Mongoose connection error %s', msg);
+});
 
+db.once('open', function(){
+	console.log('Mongoose connection established');
+});
 
-server.get('/', send);
-server.get('hello/:test', send);
-server.put('hello/:test', send);
-server.del('hello/:test', function(req, res, next) {
-    res.send(req.params.test + " is gone ... deleted");
-    return next();
-})
+// Client
+server.get('/', client.get);
 
+// Server Responses
+server.get('/emails', emails.get);
+server.get('/hello/:name', hello.send);
+server.put('/hello/:name', hello.send);
+server.post('/hello/:name', hello.post);
+server.del('/hello/:name', hello.del);
 
 server.listen(port, function(){
-    console.log('%s listening at %s', server.name, server.url);
+	console.log('%s listening at %s', server.name, port);
 });
