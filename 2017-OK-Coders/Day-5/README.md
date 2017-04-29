@@ -1,4 +1,4 @@
-ToDo List Application
-=========================
+Todo List Application
+=====================
 
-Because, you kn ow, there are not enough todo applications in the world.
+Because, you know, there are not enough todo applications in the world.
