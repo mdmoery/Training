@@ -22,11 +22,11 @@ db.once('open', function(){
 server.get('/', client.get);
 
 // Server Responses
-server.get('/emails', emails.get);
-server.get('/hello/:name', hello.send);
-server.put('/hello/:name', hello.send);
-server.post('/hello/:name', hello.post);
-server.del('/hello/:name', hello.del);
+server.get('/emails', emails.get);          // routes/emails.js lists all emails
+server.get('/hello/:name', hello.send);     // routes.hello.js Testing and name
+server.put('/hello/:name', hello.send);     // routes.hello.js Testing and name
+server.post('/hello/:name', hello.post);    // routes/hello.js generates random string
+server.del('/hello/:name', hello.del);      // routes/hello.js says is deleted but is not
 
 server.listen(port, function(){
 	console.log('%s listening at %s', server.name, port);

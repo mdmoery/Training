@@ -4,12 +4,13 @@
   "description": "Example Applications for week 4",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Bobby Rockers <rrockers@gmail.com>",
+  "author": "Micheal Moery",
   "license": "ISC",
   "dependencies": {
-    "mongoose": "^4.9.4",
+    "mongoose": "^4.9.6",
     "restify": "^4.3.0"
   }
 }
