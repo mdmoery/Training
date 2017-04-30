@@ -1,5 +1,6 @@
 *.log
 *.lock
-2017-OK-Coders/*/db/*
 2017-OK-Coders/*/node_modules/*
+2017-OK-Coders/*/db/*
+!2017-OK-Coders/*/db/README.md
 
