@@ -1,10 +1,10 @@
 var Emails = require('../models/emails.js');
 
 exports.get = function(req, res, next){
-	Emails.find().limit(10).exec(function(err,data){
+	Emails.find().limit(20).exec(function(err,data){
 		if(err){res.send('Error');}
 		else {
-			res.json(data);
+            res.json(data);
 		}
 	});
 	return next();
