@@ -1,12 +1,13 @@
 var restify = require('restify');
 var server = restify.createServer();
 server.use(restify.bodyParser());
-const port = 8088;
+var config = require('./config.json');
+const port = config.port;
 
 var auth = require('./routes/auth');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/testing');
+mongoose.connect(config.mongodb);
 var db = mongoose.connection;
 
 db.on('error', function(msg){
