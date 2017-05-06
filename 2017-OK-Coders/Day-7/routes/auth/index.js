@@ -1,6 +1,19 @@
 var Auth = require('../../models/auth');
 var bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
+var config = require('../../config.js')();
+
 const saltRounds = 2;
+
+var getToken = function(user){
+	var date = ( Date.now() / 1000 );
+	var exp = date + (60 * 120);
+	return jwt.sign({
+		user: user._id,
+		iat: date,
+		exp: exp
+	}, config.secret);
+}
 
 exports.create = function(req, res, next){
 	var auth = new Auth();
@@ -54,8 +67,33 @@ exports.read = function(req, res, next){
 				res.json(400, {status: "failed", reason: "Invalid Password"});
 				return next();
 			}
-			res.json(200,{status:"success"});
+			res.json(200,{status:"success", token: getToken(data)});
 			return next();
 		});
 	});
+}
+
+exports.verify = function(req, res, next){
+    var token = req.header('authorization');
+    
+    if(!token) {
+        console.log("No authorization header value");
+        res.json(404, {status:"failed",reason:"user needs to login"});
+    } else {
+        jwt,verify(token, config.secret, function(err,decoded){
+            if(err) {
+                console.log(err);
+                res.json(404, {status:"failed",reason:"JWT is not valid"});
+            } else {
+                Auth.findOne({_id: decoded.user, is_active:true}).exec(function(errs,data){
+                    if(err2){
+                        console.log(err2);
+                        res.json(404, {status:"failed",reason:"Not a valid user"});
+                    } else {
+                        return next();
+                    }
+                });
+            }
+        });
+    }
 }

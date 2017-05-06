@@ -1,12 +1,13 @@
 var restify = require('restify');
 var server = restify.createServer();
 server.use(restify.bodyParser());
-var config = require('./config.json');
+var config = require('./config.js')();
+
 const port = config.port;
+var mongoose = require('mongoose');
 
 var auth = require('./routes/auth');
 
-var mongoose = require('mongoose');
 mongoose.connect(config.mongodb);
 var db = mongoose.connection;
 
@@ -18,11 +19,17 @@ db.once('open', function(){
 	console.log('Mongoose connection established');
 });
 
-server.post('/user/add', auth.create);
+server.post('/user/add', auth.verify, auth.create);
 server.post('/user/login', auth.read);
+
 server.get('/', restify.serveStatic({
 	directory: './client', 
 	default: "index.html"
+}));
+
+server.get(/\/private\//, auth.verify, restify.serveStatic({
+	directory: './client',
+	file: 'private.html'
 }));
 
 server.listen(port, function(){

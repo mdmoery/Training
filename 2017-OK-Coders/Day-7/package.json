@@ -7,10 +7,11 @@
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Micheal Moery",
+  "author": "Bob Rockers <rrockers@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^1.0.2",
+    "jsonwebtoken": "^7.4.0",
     "mongoose": "^4.9.6",
     "restify": "^4.3.0"
   }
