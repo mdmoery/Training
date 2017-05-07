@@ -19,6 +19,7 @@ db.once('open', function(){
 	console.log('Mongoose connection established');
 });
 
+//server.post('/user/add', auth.create);
 server.post('/user/add', auth.verify, auth.create);
 server.post('/user/login', auth.read);
 

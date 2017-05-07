@@ -1,5 +1,5 @@
 var Auth = require('../../models/auth');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 const saltRounds = 2;
 
 exports.create = function(req, res, next){
